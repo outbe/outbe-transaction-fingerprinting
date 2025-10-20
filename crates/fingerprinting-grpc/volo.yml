@@ -1,0 +1,14 @@
+# Please refer to https://www.cloudwego.io/docs/volo/guide/config/ for the configuration file format.
+entries:
+  proto:
+    filename: proto_gen.rs
+    protocol: protobuf
+    with_descriptor: true
+    services:
+      - idl:
+          source: local
+          path: proto/net/outbe/fingerprint/v1/external_service.proto
+          includes:
+            - proto
+        codegen_option:
+          keep_unknown_fields: true

@@ -1,0 +1,29 @@
+[package]
+name = "fingerprinting-core"
+version = "0.1.0"
+edition = "2021"
+rust-version.workspace = true
+
+[dependencies]
+tokio.workspace = true
+anyhow.workspace = true
+halo2-axiom.workspace = true
+chrono.workspace = true
+
+fingerprinting-types.workspace = true
+fingerprinting-poseidon.workspace = true
+
+# logging support
+log.workspace = true
+
+# Create Specific Dependencies
+bytes = "1.10"
+regex = "1.11"
+bigint = "4.4"
+iso_currency = { version = "0.5.3", features = ["default"] }
+bs58 = "0.5"
+rand_core = "0.6.4"
+futures = "0.3"
+
+[dev-dependencies]
+rand = "0.9"

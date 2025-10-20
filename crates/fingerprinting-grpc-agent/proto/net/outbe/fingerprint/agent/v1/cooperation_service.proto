@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package net.outbe.fingerprint.agent.v1;
+
+message CooperationRequest {
+  // Secret generation
+  uint64 generation = 1;
+
+  // Blinded hash represented as point on `BN256` curve
+  // According to the documentation it's a `B` value equal to `[r] P`
+  bytes blinded_value = 10;
+}
+
+message CooperationResponse {
+  // During what generation computation is done
+  uint64 generation = 1;
+
+  // Blinded exponent
+  // According to the documentation it's a `[s_i] B`
+  bytes blinded_exponent = 10;
+
+  // Optional value with the proof of computation by the agent
+  // TODO describe in docs how the proof is generated
+  bytes proof_of_computation = 20;
+}
+
+service CooperationService {
+  // Perform the exponent computation
+  rpc ComputeExponent(CooperationRequest) returns (CooperationResponse);
+}

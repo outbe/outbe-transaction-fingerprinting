@@ -1,0 +1,54 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/fingerprinting-types",
+    "crates/fingerprinting-core",
+    "crates/fingerprinting-cli",
+    "crates/fingerprinting-poseidon",
+    "crates/fingerprinting-grpc",
+    "crates/fingerprinting-grpc-agent",
+]
+default-members = ["crates/fingerprinting-cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.90.0"
+authors = [
+    "anton@devlab.co",
+]
+license = "MIT"
+repository = "https://github.com/tonyvelichko/transaction-fingerprinting"
+
+[profile.release]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = 'unwind'
+incremental = false
+codegen-units = 1
+rpath = false
+
+[workspace.dependencies]
+log = "0.4"
+halo2-axiom = "0.5.1"
+anyhow = "1.0"
+bytes = { version = "1.10", features = ["default"] }
+chrono = { version = "0.4", features = ["default"] }
+
+rand_core = "0.6.4"
+
+tokio = { version = "1.48", features = ["full"] }
+serde = "1.0"
+serde_derive = "1.0"
+hocon = { version = "0.9", features = ["serde"] }
+
+fingerprinting-types = { version = "0.1", path = "crates/fingerprinting-types" }
+fingerprinting-poseidon = { version = "0.1", path = "crates/fingerprinting-poseidon" }
+fingerprinting-core = { version = "0.1", path = "crates/fingerprinting-core" }
+
+fingerprinting-grpc = { version = "0.1", path = "crates/fingerprinting-grpc" }
+fingerprinting-grpc-agent = { version = "0.1", path = "crates/fingerprinting-grpc-agent" }
+

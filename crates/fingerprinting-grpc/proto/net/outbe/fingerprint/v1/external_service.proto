@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+import "net/outbe/common/v1/money.proto";
+import "net/outbe/common/v1/timestamp.proto";
+import "net/outbe/common/v1/date.proto";
+
+package net.outbe.fingerprint.v1;
+option go_package = "github.com/outbe/fingerprinting/clients/go/service/v1";
+
+message TransactionFingerprintData {
+  // International Business Identification Code
+  string bic = 1;
+
+  // Amount of transaction (non signed)
+  net.outbe.common.v1.Money amount = 10;
+
+  // Transaction date and time in UTC
+  net.outbe.common.v1.Timestamp date_time = 20;
+
+  // Associated World Wide Day with the transaction
+  net.outbe.common.v1.Date wwd = 30;
+}
+
+message Fingerprint {
+  bytes fingerprint = 1;
+  string compact_fingerprint = 2;
+}
+
+message ComputeSingleFingerprintRequest {
+  reserved 1;
+
+  TransactionFingerprintData transaction_data = 10;
+}
+
+message ComputeSingleFingerprintResponse {
+  Fingerprint fingerprint = 1;
+}
+
+message ComputeBatchFingerprintRequest {
+  message Item {
+    string item_id = 1;
+    TransactionFingerprintData transaction_data = 10;
+  }
+
+  repeated Item transaction_batch = 10;
+}
+
+message ComputeBatchFingerprintResponse {
+  string item_id = 1;
+  Fingerprint fingerprint = 10;
+}
+
+/**
+ * Fingerprint Service for computing transactions fingerprints
+ * This service is used for external clients such as CRA
+ */
+service FingerprintService {
+
+  // Perform computation of single transaction fingerprint
+  //
+  // INVALID_ARGUMENT - when the input data is wrong
+  // ABORTED - when the fingerprint computation is aborted
+  rpc ComputeSingleFingerprint(ComputeSingleFingerprintRequest) returns (ComputeSingleFingerprintResponse);
+
+  // Perform computation of transaction batch fingerprints.
+  // The order of computation is not guaranteed, computed fingerprints will appear in result stream as they ready.
+  //
+  // INVALID_ARGUMENT - when the input data is wrong
+  // ABORTED - when the fingerprint computation is aborted
+  rpc ComputeBatchFingerprint(ComputeBatchFingerprintRequest) returns (stream ComputeBatchFingerprintResponse);
+}

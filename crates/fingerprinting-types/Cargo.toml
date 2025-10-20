@@ -1,0 +1,17 @@
+[package]
+name = "fingerprinting-types"
+version = "0.1.0"
+edition = "2021"
+rust-version.workspace = true
+
+[dependencies]
+chrono.workspace = true
+
+# Create Specific Dependencies
+derive_builder = "0.20.2"
+
+fixed-num = "0.1"
+fixed-num-helper = "*"
+
+[dev-dependencies]
+hex = "0.4"

@@ -1,0 +1,23 @@
+[package]
+name = "fingerprinting-grpc-agent"
+version = "0.1.0"
+edition = "2021"
+rust-version.workspace = true
+
+[dependencies]
+fingerprinting-core.workspace = true
+
+halo2-axiom.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+
+volo = "0.11"
+volo-grpc = "0.11"
+volo-build = "0.11"
+pilota = "0.12"
+tokio-stream = "0.1.17"
+futures = "0.3"
+rand = "0.8.5"
+
+[build-dependencies]
+volo-build = "0.11"
