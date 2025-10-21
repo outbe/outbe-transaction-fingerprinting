@@ -1,16 +1,12 @@
 version: v2
 modules:
-  # Each module entry defines a path, which must be relative to the directory where the
-  # buf.yaml is located. You can also specify directories to exclude from a module.
   - path: crates/fingerprinting-grpc/proto
-    # Modules can also optionally specify their Buf Schema Repository name if it exists.
     name: buf.build/outbe/fingerprinting
 
 lint:
   use:
     - STANDARD
 
-# Default breaking configuration. It behaves the same as the default lint configuration.
 breaking:
   use:
     - FILE

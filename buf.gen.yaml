@@ -1,45 +1,20 @@
 version: v2
-# 'clean', when set to true, deletes the directories, zip files, and/or jar files specified in the
-# `out` field for all plugins before running code generation.
 clean: true
-# 'managed' contains the configuration for managed mode: https://buf.build/docs/generate/managed-mode
-# It has three top-level keys: 'enabled', 'disable', and 'override'.
-#
-# When managed mode is enabled, it uses default values for certain file and field options during code
-# generation. Options, accepted values, and defaults are documented here:
-# https://buf.build/docs/generate/managed-mode#default-behavior
-# The 'disable' key configures modules, paths, fields, and/or options that are excluded from managed
-# mode's behavior. The 'override' key configures field and file option values that override the
-# default values managed mode uses during code generation.
-#
-# In the case of options that combine with other options (for example java_package + java_package_prefix
-# + java_package_suffix), they're all applied if possible. If not (for example when all three are set)
-# then the last configuration rule wins.
-
-#
-# A 'plugin' configuration has 10 possible keys:
-#  - one of (required):
-#    - 'remote': remote plugin name (for example buf.build/protocolbuffers/go)
-#    - 'protoc_builtin': a 'protoc' built-in plugin (for example 'cpp' for 'protoc-gen-cpp')
-#    - 'local': a string or list of strings that point to a protoc plugin binary on your
-#      '${PATH}'. If a list of strings is specified, the first is the binary name, and the
-#      subsequent strings are considered arguments passed to the binary.
-#  - 'out': <string> path to the file output, which is the same as v1 (required)
-#  - 'opt': a list of plugin options, which is the same as v1 (optional)
-#  - 'strategy': a string for the invocation strategy, which is the same as v1 (optional)
-#  - 'include_imports': <boolean> (optional, precedence given to CLI flag)
-#  - 'include_wkt': <boolean> (optional, precedence given to CLI flag)
-#  - 'types': <string> a list of the types that the plugin should be limited to
-#  - 'exclude_types': <string> a list of the types that the plugin should exclude
 plugins:
-  # BSR remote plugin
+  # Go client generation
   - remote: buf.build/protocolbuffers/go
     out: clients/go
+
+  # Kotlin client generation
   - remote: buf.build/connectrpc/kotlin:v0.7.4
     out: clients/kotlin/src/main/kotlin
   - remote: buf.build/protocolbuffers/kotlin:v33.0
     out: clients/kotlin/src/main/kotlin
-  - remote: buf.build/protocolbuffers/python:v33.0
-    out: clients/python
-  - remote: buf.build/grpc/python:v1.75.1
-    out: clients/python
+  - remote: buf.build/protocolbuffers/java:v33.0
+    out: clients/kotlin/src/main/java
+
+  # Java client generation
+  - remote: buf.build/protocolbuffers/java:v33.0
+    out: clients/java/src/main/java
+  - remote: buf.build/grpc/java:v1.76.0
+    out: clients/java/src/main/java

@@ -1,2 +1,5 @@
-/target
-/clients
+target
+/clients/java/src
+/clients/go
+/clients/kotlin/src
+/clients/python
