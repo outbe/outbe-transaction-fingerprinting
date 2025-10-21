@@ -19,7 +19,7 @@ authors = [
     "anton.velichko@me.com",
 ]
 license = "MIT"
-repository = "https://github.com/tonyvelichko/transaction-fingerprinting"
+repository = "https://github.com/outbe/outbe-transaction-fingerprinting"
 
 [profile.release]
 opt-level = 3
