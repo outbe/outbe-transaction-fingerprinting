@@ -147,7 +147,11 @@ docker buildx build -t outbe/fingerprinting:1.0 --platform linux/amd64,linux/arm
 
 After building the docker image you can run the container with the following command:
 ```bash
- docker run -d -v $(pwd)/examples/docker/config:/config --name fingerprint -p 9000:9000 --platform=linux/amd64 outbe/fingerprinting:1.0
+# Run the container with the default configuration on linux/amd64 container 
+docker run -d -v $(pwd)/examples/docker/config:/config --name fingerprint -p 9000:9000 --platform=linux/amd64 outbe/fingerprinting:1.0
+
+# Run the container with the default configuration on linux/arm64 container (useful for Apple Silicon laptops) 
+docker run -d -v $(pwd)/examples/docker/config:/config --name fingerprint -p 9000:9000 --platform=linux/arm64 outbe/fingerprinting:1.0
 ```
 
 #### Building clients

@@ -14,8 +14,9 @@ default-members = ["crates/fingerprinting-cli"]
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.90.0"
+
 authors = [
-    "anton@devlab.co",
+    "anton.velichko@me.com",
 ]
 license = "MIT"
 repository = "https://github.com/tonyvelichko/transaction-fingerprinting"
