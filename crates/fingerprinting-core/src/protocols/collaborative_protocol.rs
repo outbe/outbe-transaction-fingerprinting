@@ -85,7 +85,7 @@ impl<T: AgentsTopology<Fr, G1> + Sync> FingerprintProtocol<Fr>
                 self.topology
                     .obtain_shard(i, 0, blinded_hash.clone())
                     .map_err(move |e| {
-                        log::error!("Error while obtaining shard from agent {}: {}", agent, e);
+                        log::error!("Error while getting shard from agent {}: {}", agent, e);
                         e
                     })
                     .map_ok_or_else(|_| (0, G1::generator()), |v| v) // Todo add logging here

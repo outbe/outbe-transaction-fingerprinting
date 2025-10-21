@@ -7,7 +7,7 @@
 
     <version>1.0-SNAPSHOT</version><!-- CURRENT_GRPC_VERSION -->
     <name>transaction fingerprinting client</name>
-    <url>https://github.com/tonyvelichko/transaction-fingerprinting</url>
+    <url>https://github.com/outbe/outbe-transaction-fingerprinting</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
