@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package net.outbe.common.v1;
+
 option go_package = "github.com/outbe/fingerprinting/clients/go/common/v1";
 
 //Currency codes as specified in ISO 4217
@@ -8,7 +9,7 @@ enum Currency {
   //XXX = 999; // Changed to 0 because proto3 requires the default to be 0
   CURRENCY_UNSPECIFIED = 0;
 
-  CURRENCY_ALL = 8;    // Stands for Albania, not all ;-)
+  CURRENCY_ALL = 8; // Stands for Albania, not all ;-)
   CURRENCY_DZD = 12;
   CURRENCY_ARS = 32;
   CURRENCY_AUD = 36;
