@@ -8,12 +8,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   sdk:
     name: Generate SDK
@@ -23,11 +17,12 @@ jobs:
         uses: s4u/setup-maven-action@v1.19.0
         with:
           java-version: '24'
+          settings-servers: '[{"id": "central", "username": "${{ secrets.CENTRAL_TOKEN_USERNAME }}", "password": "${{ secrets.CENTRAL_TOKEN_PASSWORD }}"}]'
       - name: Setup Buf
         uses: bufbuild/buf-action@v1
         with:
           setup_only: 'true'
 
       - run: buf generate
-      - run: cd clients/java && mvn clean package
-      - run: cd clients/kotlin && mvn clean package
+      - run: cd clients/java && mvn clean package && mvn -P release --batch-mode deploy -DskipTests
+      - run: cd clients/kotlin && mvn clean package && mvn -P release --batch-mode deploy -DskipTests
