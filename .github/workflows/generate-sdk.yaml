@@ -7,7 +7,9 @@ on:
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
-
+env:
+  MAVEN_GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+  MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_SIGNING_KEY_PASSWORD }}
 jobs:
   sdk:
     name: Generate SDK
