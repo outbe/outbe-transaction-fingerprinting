@@ -17,7 +17,10 @@ jobs:
     name: Generate SDK
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-java@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           java-version: '24'
           distribution: 'temurin'
