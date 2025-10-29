@@ -3,3 +3,4 @@ target
 /clients/go
 /clients/kotlin/src
 /clients/python
+/.secrets

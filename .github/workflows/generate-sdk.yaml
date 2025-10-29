@@ -21,7 +21,8 @@ jobs:
     steps:
       - name: Setup Maven Action
         uses: s4u/setup-maven-action@v1.19.0
-
+        with:
+          java-version: '24'
       - name: Setup Buf
         uses: bufbuild/buf-action@v1
         with:
