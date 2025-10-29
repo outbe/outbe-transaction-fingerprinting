@@ -26,5 +26,5 @@ jobs:
           setup_only: 'true'
 
       - run: buf generate
-      - run: cd clients/java && mvn clean package && mvn -P release --batch-mode deploy -DskipTests
-      - run: cd clients/kotlin && mvn clean package && mvn -P release --batch-mode deploy -DskipTests
+      - run: cd clients/java && mvn clean package && mvn -X -P release --batch-mode deploy -DskipTests
+      - run: cd clients/kotlin && mvn clean package && mvn -X -P release --batch-mode deploy -DskipTests
