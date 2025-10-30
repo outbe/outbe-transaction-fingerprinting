@@ -5,7 +5,7 @@
     <artifactId>client-kotlin</artifactId>
     <packaging>jar</packaging>
 
-    <version>1.0-SNAPSHOT</version>
+    <version>0.9</version>
     <name>Transaction Fingerprinting Kotlin Client</name>
     <description>Kotlin client for transaction fingerprinting service</description>
     <url>https://github.com/outbe/outbe-transaction-fingerprinting</url>
