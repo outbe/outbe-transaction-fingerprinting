@@ -124,6 +124,7 @@ async fn main() -> Result<(), anyhow::Error> {
     match agent_server {
         None => fingerprint_server
             .http2_adaptive_window(true)
+            .accept_http1(true)
             .run(fingerprint_grpc_address)
             .await
             .map_err(|e| anyhow::anyhow!(e)),
@@ -137,10 +138,12 @@ async fn main() -> Result<(), anyhow::Error> {
 
             let agent_server = agent_server
                 .http2_adaptive_window(true)
+                .accept_http1(true)
                 .run(agent_grpc_address);
 
             let fingerprint_server = fingerprint_server
                 .http2_adaptive_window(true)
+                .accept_http1(true)
                 .run(fingerprint_grpc_address);
 
             futures::future::try_join(agent_server, fingerprint_server)

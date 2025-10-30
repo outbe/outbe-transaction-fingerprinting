@@ -52,6 +52,8 @@ async fn main() -> Result<(), anyhow::Error> {
     let service = CooperationAgentService::new(secret_shard);
 
     Server::new()
+        .http2_adaptive_window(true)
+        .accept_http1(true)
         .add_service(
             ServiceBuilder::new(
                 net::outbe::fingerprint::agent::v1::CooperationServiceServer::new(service),

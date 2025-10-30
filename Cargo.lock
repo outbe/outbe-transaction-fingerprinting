@@ -863,6 +863,7 @@ dependencies = [
  "fingerprinting-types",
  "futures",
  "halo2-axiom",
+ "hex",
  "iso_currency",
  "log",
  "rand 0.9.2",

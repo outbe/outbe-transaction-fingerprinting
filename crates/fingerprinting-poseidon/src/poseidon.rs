@@ -75,4 +75,9 @@ impl<F: FromUniformBytes<64>, const T: usize, const RATE: usize> Poseidon<F, T, 
         // Returns the challenge while preserving internal state
         self.state.result()
     }
+
+    pub fn clear(&mut self) {
+        self.state = State::default();
+        self.absorbing.clear();
+    }
 }

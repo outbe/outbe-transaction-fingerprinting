@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package net.outbe.common.v1;
+
 option go_package = "github.com/outbe/fingerprinting/clients/go/common/v1";
 
 message Date {

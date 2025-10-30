@@ -27,3 +27,4 @@ futures = "0.3"
 
 [dev-dependencies]
 rand = "0.9"
+hex = "0.4.3"
