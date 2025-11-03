@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package net.outbe.common.v1;
+
 option go_package = "github.com/outbe/fingerprinting/clients/go/common/v1";
 
 // A Timestamp represents a point in time independent of any time zone or local
@@ -9,7 +10,6 @@ option go_package = "github.com/outbe/fingerprinting/clients/go/common/v1";
 // January 1, 1970, in the proleptic Gregorian calendar which extends the
 // Gregorian calendar backwards to year one.
 message Timestamp {
-
   // Represents seconds of UTC time since Unix epoch
   // 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
   // 9999-12-31T23:59:59Z inclusive.

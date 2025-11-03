@@ -1,9 +1,10 @@
 syntax = "proto3";
 
-import "net/outbe/common/v1/currency.proto";
-option go_package = "github.com/outbe/fingerprinting/clients/go/common/v1";
-
 package net.outbe.common.v1;
+
+import "net/outbe/common/v1/currency.proto";
+
+option go_package = "github.com/outbe/fingerprinting/clients/go/common/v1";
 
 /**
  * Represents an amount of money with its currency type.

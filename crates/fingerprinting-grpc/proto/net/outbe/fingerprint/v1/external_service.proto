@@ -1,10 +1,11 @@
 syntax = "proto3";
 
+package net.outbe.fingerprint.v1;
+
+import "net/outbe/common/v1/date.proto";
 import "net/outbe/common/v1/money.proto";
 import "net/outbe/common/v1/timestamp.proto";
-import "net/outbe/common/v1/date.proto";
 
-package net.outbe.fingerprint.v1;
 option go_package = "github.com/outbe/fingerprinting/clients/go/service/v1";
 
 message TransactionFingerprintData {
@@ -55,7 +56,6 @@ message ComputeBatchFingerprintResponse {
  * This service is used for external clients such as CRA
  */
 service FingerprintService {
-
   // Perform computation of single transaction fingerprint
   //
   // INVALID_ARGUMENT - when the input data is wrong
