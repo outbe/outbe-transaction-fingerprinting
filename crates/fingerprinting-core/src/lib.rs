@@ -1,4 +1,4 @@
-mod components;
+pub mod components;
 mod protocols;
 pub mod secret_sharing;
 

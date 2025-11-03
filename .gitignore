@@ -4,3 +4,5 @@ target
 /clients/kotlin/src
 /clients/python
 /.secrets
+
+.idea
