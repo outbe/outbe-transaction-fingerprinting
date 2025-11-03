@@ -9,24 +9,24 @@ pub type Bytes32 = [u8; 32];
 /// It serializes the full 32-byte address into the fingerprint buffer
 #[derive(Debug)]
 pub struct Bytes32Component {
-    address: [u8; 32],
+    data: [u8; 32],
 }
 
 impl FingerprintComponent<Bytes32, 32> for Bytes32Component {
     fn new(original: Bytes32) -> Self {
-        Self { address: original }
+        Self { data: original }
     }
 
     fn serialize<W: Write>(&self, buffer: &mut W) -> Result<(), Error> {
         // Write all 32 bytes of the address to the buffer
-        let written = buffer.write(self.address.as_ref())?;
+        let written = buffer.write(self.data.as_ref())?;
 
         debug_assert_eq!(written, Self::size());
         Ok(())
     }
 
     fn raw(&self) -> &Bytes32 {
-        &self.address
+        &self.data
     }
 }
 
