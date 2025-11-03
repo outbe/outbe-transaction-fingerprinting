@@ -1,7 +1,7 @@
 use halo2_axiom::halo2curves::ff::PrimeField;
 use std::io::Write;
 
-mod address;
+mod bytes32;
 mod amount;
 mod bank_identifier;
 mod currency;
@@ -29,7 +29,7 @@ pub trait FingerprintComponent<O, const S: usize> {
 }
 
 #[allow(unused_imports)]
-pub use address::{AddressBytes, AddressComponent};
+pub use bytes32::{Bytes32, Bytes32Component};
 pub use amount::AmountComponent;
 pub use bank_identifier::BankIdentifierComponent;
 pub use currency::CurrencyComponent;

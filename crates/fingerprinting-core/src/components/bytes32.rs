@@ -2,20 +2,18 @@ use crate::components::FingerprintComponent;
 use anyhow::Error;
 use std::io::Write;
 
-/// Address is a wrapper around a 32-byte array.
-/// NB: Actually Ethereum EOA has 20 bytes but here we allow more length for compatibility with
-/// other possible addresses and derivatives
-pub type AddressBytes = [u8; 32];
+/// Bytes32 is a wrapper around a 32-byte array.
+pub type Bytes32 = [u8; 32];
 
-/// AddressComponent implements FingerprintComponent for Address
+/// Bytes32Component implements FingerprintComponent for Bytes32
 /// It serializes the full 32-byte address into the fingerprint buffer
 #[derive(Debug)]
-pub struct AddressComponent {
+pub struct Bytes32Component {
     address: [u8; 32],
 }
 
-impl FingerprintComponent<AddressBytes, 32> for AddressComponent {
-    fn new(original: AddressBytes) -> Self {
+impl FingerprintComponent<Bytes32, 32> for Bytes32Component {
+    fn new(original: Bytes32) -> Self {
         Self { address: original }
     }
 
@@ -27,7 +25,7 @@ impl FingerprintComponent<AddressBytes, 32> for AddressComponent {
         Ok(())
     }
 
-    fn raw(&self) -> &AddressBytes {
+    fn raw(&self) -> &Bytes32 {
         &self.address
     }
 }
@@ -38,8 +36,8 @@ mod tests {
 
     #[test]
     fn test_address_component_serialize() {
-        let address: AddressBytes = [1u8; 32];
-        let component = AddressComponent::new(address);
+        let address: Bytes32 = [1u8; 32];
+        let component = Bytes32Component::new(address);
 
         let mut buffer = Vec::new();
         component.serialize(&mut buffer).unwrap();
@@ -50,13 +48,13 @@ mod tests {
 
     #[test]
     fn test_address_component_size() {
-        assert_eq!(AddressComponent::size(), 32);
+        assert_eq!(Bytes32Component::size(), 32);
     }
 
     #[test]
     fn test_address_component_raw() {
-        let address: AddressBytes = [2u8; 32];
-        let component = AddressComponent::new(address);
+        let address: Bytes32 = [2u8; 32];
+        let component = Bytes32Component::new(address);
 
         assert_eq!(component.raw(), &address);
     }
