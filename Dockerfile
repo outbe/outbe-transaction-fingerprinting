@@ -24,9 +24,11 @@ COPY . .
 RUN rustup component add rustfmt
 RUN cargo zigbuild -r \
     --target x86_64-unknown-linux-musl --target aarch64-unknown-linux-musl && \
-  mkdir /app/linux && \
-  cp target/aarch64-unknown-linux-musl/release/fingerprinting-agent /app/linux/arm64 && \
-  cp target/x86_64-unknown-linux-musl/release/fingerprinting-agent /app/linux/amd64
+  mkdir -p /app/linux/arm64 /app/linux/amd64 && \
+  cp target/aarch64-unknown-linux-musl/release/fingerprinting-agent /app/linux/arm64/ && \
+  cp target/aarch64-unknown-linux-musl/release/fingerprinting-light-agent /app/linux/arm64/ && \
+  cp target/x86_64-unknown-linux-musl/release/fingerprinting-agent /app/linux/amd64/ && \
+  cp target/x86_64-unknown-linux-musl/release/fingerprinting-light-agent /app/linux/amd64/
 
 # (5) this staged will be emulated as was before
 # TARGETPLATFORM usage to copy right binary from builder stage
@@ -34,5 +36,6 @@ RUN cargo zigbuild -r \
 FROM gcr.io/distroless/static AS runtime
 WORKDIR /app
 ARG TARGETPLATFORM
-COPY --from=builder /app/${TARGETPLATFORM} /app/fingerprinting-agent
+COPY --from=builder /app/${TARGETPLATFORM}/fingerprinting-agent /app/fingerprinting-agent
+COPY --from=builder /app/${TARGETPLATFORM}/fingerprinting-light-agent /app/fingerprinting-light-agent
 CMD ["/app/fingerprinting-agent", "--config", "/config/agent.conf"]
